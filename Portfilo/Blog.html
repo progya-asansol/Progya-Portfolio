@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Progya Fouzder - Tech Blog</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a4365;
+            --secondary-color: #4299e1;
+            --accent-color: #f6ad55;
+            --dark-color: #1a202c;
+            --light-color: #f7fafc;
+            --gray-color: #718096;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .sidebar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            width: 280px;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar nav {
+            margin-top: 2rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .sidebar a.active {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 3rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .page-header p {
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .blog-card:hover:before {
+            opacity: 1;
+        }
+
+        .blog-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+        }
+
+        .blog-excerpt {
+            color: var(--gray-color);
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--gray-color);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-author img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 8px;
+            object-fit: cover;
+        }
+
+        .btn-read {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-read i {
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+
+        .btn-read:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .subscribe-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin-top: 4rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .subscribe-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subscribe-section p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+
+        .subscribe-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .btn-subscribe {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 4px 4px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-subscribe:hover {
+            background: #fbd38d;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                min-height: auto;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            .subscribe-form {
+                flex-direction: column;
+            }
+            .subscribe-form input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            .btn-subscribe {
+                border-radius: 4px;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <h2>Progya Fouzder</h2>
+                <nav>
+                    <a href="/home.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="/intro.html">
+                        <i class="fas fa-user"></i> My Intro
+                    </a>
+                    <a href="/CV.html">
+                        <i class="fas fa-file-alt"></i> CV
+                    </a>
+                    <a href="/services.html">
+                        <i class="fas fa-code"></i> Services
+                    </a>
+                    <a href="/Blog.html" class="active">
+                        <i class="fas fa-blog"></i> Blog
+                    </a>
+                    <a href="/contact.html">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <div class="page-header">
+                    <h1>Tech Insights & Tutorials</h1>
+                    <p>Sharing my knowledge and experiences in web development, programming, and technology trends.</p>
+                </div>
+
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="JavaScript Development">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">JavaScript</span>
+                            <h3 class="blog-title">Mastering Modern JavaScript in 2023</h3>
+                            <p class="blog-excerpt">Explore the latest ES2023 features and learn how to write cleaner, more efficient JavaScript code with practical examples.</p>
+                            <a href="/blog/javascript-mastery" class="btn-read">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
+                                <span><i class="far fa-clock"></i> 8 min read</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Web Development">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Web Development</span>
+                            <h3 class="blog-title">10 Essential Tools for Web Developers</h3>
+                            <p class="blog-excerpt">Discover the must-have tools that will boost your productivity and make your development workflow smoother.</p>
+                            <a href="/blog/web-dev-tools" class="btn-read">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Science">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Data Science</span>
+                            <h3 class="blog-title">Getting Started with Python for Data Analysis</h3>
+                            <p class="blog-excerpt">A beginner's guide to using Python and Pandas for data manipulation and analysis with real-world datasets.</p>
+                            <a href="/blog/python-data-analysis" class="btn-read">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> April 12, 2023</span>
+                                <span><i class="far fa-clock"></i> 10 min read</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 4 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mobile Development">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Mobile</span>
+                            <h3 class="blog-title">Flutter vs React Native: Which to Choose?</h3>
+                            <p class="blog-excerpt">Comparing the two most popular cross-platform frameworks to help you decide which one fits your project needs.</p>
+                            <a href="/blog/flutter-vs-react" class="btn-read">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> March 22, 2023</span>
+                                <span><i class="far fa-clock"></i> 12 min read</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 5 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Programming">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Programming</span>
+                            <h3 class="blog-title">Clean Code Principles Every Developer Should Know</h3>
+                            <p class="blog-excerpt">Learn the fundamental principles that will help you write maintainable, efficient, and professional-quality code.</p>
+                            <a href="/blog/clean-code" class="btn-read">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> February 18, 2023</span>
+                                <span><i class="far fa-clock"></i> 9 min read</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 6 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Web Design">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Design</span>
+                            <h3 class="blog-title">UI/UX Trends to Watch in 2023</h3>
+                            <p class="blog-excerpt">Explore the emerging design trends that will shape user interfaces and experiences in the coming year.</p>
+                            <a href="/blog/ui-ux-trends" class="btn-read">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> January 5, 2023</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter Subscription -->
+                <div class="subscribe-section">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to my newsletter to receive the latest articles and tech insights directly to your inbox.</p>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-subscribe">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add active class to current nav item
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+
+        // Simple form submission handler
+        document.querySelector('.subscribe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thank you for subscribing with ${email}! You'll receive our next update.`);
+            this.querySelector('input').value = '';
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main{
+    background-color: yellow;
+    width: 100vw;
+    height: 115vh;
+}
+.container{
+    display: flex;
+}
+.sidebar{
+    background-color: rgb(205,205,207);
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 115vh;
+    width: 434vw;
+}
+.sidebar nav{
+    display: flex;
+}
+.sidebar nav ul{
+    list-style: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    font-size: 30px;
+    padding: 40px 0;
+}
+.infoContainer{
+    background-color: rgb(202,215,49);
+    height: 100vh;
+    width: 99vw;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    margin: 90px auto;
+}
+.devInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+}
+.hello{
+    font-size: 60px;
+}
+.name{
+    font-size: 50px;
+}
+.about{
+    font-size: 35px;
+}
+.moreabout{
+    font-size: 20px;
+}
+.button{
+    margin: top;
+}
+.btn{
+    margin: 0 3px;
+    padding: 5px 14px;
+    background-color: dodgerblue;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+.btn :hover{
+    color: dodgerblue;
+    background-color: aliceblue;
+}
+.blogItem{
+    flex-direction: row;
+    background-color: blanchedalmond;
+    margin: 0 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.devPic img{
+    width: 97vw;
+    height: 60vh;
+    margin: 0 10px ;
+    border-radius: 65px;
+}
+.blogItem h2{
+    align-items: center;
+    flex-direction: row;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    background-color: burlywood
+}
+.homeContainer{
+    align-items: center;
+}
+.h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: blanchedalmond;
+    color: blue;
+}
+.btn{
+    background-color: grey;
+    border-radius: 25px;
+    width: 30vw;
+    height: 5vh;
+    padding: 10px;
+    margin: 20px;
+}
+.btn-sn:hover{
+    background-color: azure;
+    color: bisque;
+}
+.btn-sn{
+    background-color: aliceblue;
+}
+.intro h1{
+    background-color: burlywood;
+
+}
+.blogItem devPic img{
+    height: 100vh;
+}
+.intro {
+    font-size: 16px;
+    background-color: pink;
+    margin: 20px;
+    border: 5px solid brown;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    width: 100vw;
+    height: 80vh;
+}
+.skill{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: black;
+}
+.skillItem{
+
+    justify-content: ;
+    align-items: center;
+}

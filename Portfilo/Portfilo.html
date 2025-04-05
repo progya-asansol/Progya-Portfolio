@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About Me - Progya Fouzder</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .sidebar {
+            background: linear-gradient(135deg, #1d3557, #457b9d);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .sidebar h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin: 10px 0;
+            padding: 10px;
+            display: block;
+            color: white;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #a8dadc;
+            color: #1d3557;
+            border-radius: 5px;
+        }
+
+        .main-content {
+            animation: fadeIn 2s ease-in-out;
+            background-color: #f8f9fa;
+        }
+
+        .main-content h1 span {
+            color: #e63946;
+        }
+
+        .main-content img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .main-content img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #e63946 !important;
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #1d3557;
+            animation: typing 3s steps(20, end), blink 1s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from,
+            to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #1d3557;
+            }
+        }
+
+        .skills-section {
+            margin-top: 40px;
+        }
+
+        .skill-bar {
+            background: #f1f1f1;
+            border-radius: 20px;
+            position: relative;
+            margin: 15px 0;
+            height: 25px;
+            width: 100%;
+        }
+
+        .skill-bar-fill {
+            background: #1d3557;
+            height: 100%;
+            border-radius: 20px;
+            text-align: right;
+            line-height: 25px;
+            color: white;
+            padding-right: 10px;
+            font-size: 14px;
+            width: 0;
+            animation: fillBar 2s forwards;
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--progress);
+            }
+        }
+
+        .achievements-section, .hobbies-section {
+            margin-top: 40px;
+        }
+
+        .achievements-section ul, .hobbies-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .achievements-section li, .hobbies-section li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .achievements-section li:hover, .hobbies-section li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar -->
+        <div class="row">
+            <div class="col-md-3 sidebar py-4">
+                <h2>Progya</h2>
+                <nav class="nav flex-column text-center">
+                    <a href="/home.html" class="nav-link">Home</a>
+                    <a href="/intro.html" class="nav-link">My Intro</a>
+                    <a href="/CV.html" class="nav-link">CV</a>
+                    <a href="/services.html" class="nav-link">Services</a>
+                    <a href="/Blog.html" class="nav-link">Blog</a>
+                    <a href="/contact.html" class="nav-link">Contact Me</a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 main-content p-5">
+                <div class="text-center">
+                    <h1>Hi, I am <span>Progya Fouzder</span></h1>
+                    <h3 class="typing-effect">Web Developer | Entrepreneur</h3>
+                    <p>I am a passionate developer who loves coding, traveling, and creating digital experiences.</p>
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#cvModal">
+                            <i class="fas fa-download"></i> Download CV
+                        </button>
+                        <a href="/contact.html" class="btn btn-outline-primary px-4">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <img src="Me.jpg" class="rounded-circle img-fluid shadow-lg" alt="Progya Fouzder" width="200">
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="skills-section">
+                    <h2>My Skills</h2>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="--progress: 90%;">HTML - 90%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="--progress: 85%;">CSS - 85%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="--progress: 80%;">JavaScript - 80%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="--progress: 75%;">Python - 75%</div>
+                    </div>
+                </div>
+
+                <!-- Achievements Section -->
+                <div class="achievements-section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Participated in <strong>Smart India Hackathon 2024</strong>.</li>
+                        <li>Secured <strong>2nd position</strong> in a Coding Quiz competition at college.</li>
+                        <li>Developed a fully functional <strong>Travel and Tourism website</strong>.</li>
+                    </ul>
+                </div>
+
+                <!-- Hobbies Section -->
+                <div class="hobbies-section">
+                    <h2>Hobbies</h2>
+                    <ul>
+                        <li>Traveling and exploring new cultures.</li>
+                        <li>Reading books on technology and innovation.</li>
+                        <li>Playing chess and strategy games.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for CV Download -->
+    <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cvModalLabel">Download CV</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Click the button below to download my CV.
+                </div>
+                <div class="modal-footer">
+                    <a href="/cv.pdf" download class="btn btn-primary">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
